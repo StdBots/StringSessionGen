@@ -54,29 +54,33 @@ async def start(client, message):
 
     await message.reply(
         f"""
-━━━━━━━━━━━━━━━━━━
-🤖 **STRING SESSION BOT**
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━
+𖤐 𝗦𝗧𝗗 𝗦𝗧𝗥𝗜𝗡𝗚 𝗦𝗘𝗦𝗦𝗜𝗢𝗡 𝗕𝗢𝗧 𖤐
+━━━━━━━━━━━━━━━━━━━━━━
 
-👋 Hey **{message.from_user.first_name}**
+👋 𝗛𝗲𝘆, **{message.from_user.first_name}**
 
-Generate Telegram string sessions
-using a **modern & secure web UI**.
+⚡ 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺  
+𝗦𝘁𝗿𝗶𝗻𝗴 𝗦𝗲𝘀𝘀𝗶𝗼𝗻𝘀 𝗶𝗻  
+𝗼𝗻𝗲 𝗰𝗹𝗶𝗰𝗸 🚀
 
-✨ **Supported**
-• API ID & API HASH  
-• Pyrogram  
-• Telethon  
+━━━━━━━━━━━━━━━━━━━━━━
+✨ 𝗦𝘂𝗽𝗽𝗼𝗿𝘁𝗲𝗱
+━━━━━━━━━━━━━━━━━━━━━━
+🔑 𝗔𝗣𝗜 𝗜𝗗 & 𝗔𝗣𝗜 𝗛𝗔𝗦𝗛  
+🐍 𝗣𝘆𝗿𝗼𝗴𝗿𝗮𝗺  
+📡 𝗧𝗲𝗹𝗲𝘁𝗵𝗼𝗻  
 
-⚡ Fast • Safe • Secure
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━
+⚡ 𝗙𝗮𝘀𝘁 • 𝗦𝗮𝗳𝗲 • 𝗦𝗲𝗰𝘂𝗿𝗲
+━━━━━━━━━━━━━━━━━━━━━━
 """,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("⚙️ Generate Session", callback_data="generate")],
+                [InlineKeyboardButton("⚙️ 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲 𝗦𝗲𝘀𝘀𝗶𝗼𝗻", callback_data="generate")],
                 [
-                    InlineKeyboardButton("📢 Channel", url=CHANNEL_LINK),
-                    InlineKeyboardButton("🆘 Support", url=SUPPORT_LINK)
+                    InlineKeyboardButton("📢 𝗖𝗵𝗮𝗻𝗻𝗲𝗹", url=CHANNEL_LINK),
+                    InlineKeyboardButton("🆘 𝗦𝘂𝗽𝗽𝗼𝗿𝘁", url=SUPPORT_LINK)
                 ]
             ]
         )
