@@ -2,7 +2,14 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant
 
-from config import API_ID, API_HASH, BOT_TOKEN, FORCE_SUB_CHANNEL, SUPPORT_LINK, CHANNEL_LINK
+from config import (
+    API_ID,
+    API_HASH,
+    BOT_TOKEN,
+    FORCE_SUB_CHANNEL,
+    CHANNEL_LINK,
+    SUPPORT_LINK
+)
 
 app = Client(
     "StringSessionGenBot",
@@ -12,10 +19,9 @@ app = Client(
 )
 
 
-# 🔒 FORCE SUBSCRIBE CHECK
-async def force_subscribe(client, message):
+async def is_subscribed(client, user_id):
     try:
-        await client.get_chat_member(FORCE_SUB_CHANNEL, message.from_user.id)
+        await client.get_chat_member(FORCE_SUB_CHANNEL, user_id)
         return True
     except UserNotParticipant:
         return False
@@ -23,23 +29,15 @@ async def force_subscribe(client, message):
         return False
 
 
-# 🚀 START COMMAND
 @app.on_message(filters.command("start") & filters.private)
 async def start(client, message):
-    is_joined = await force_subscribe(client, message)
-
-    if not is_joined:
+    if not await is_subscribed(client, message.from_user.id):
         await message.reply(
-            "🔒 **Join our channel to use this bot**\n\n"
-            "After joining, press **Try Again** 👇",
+            "🔒 **Join our channel to use this bot**\n\nAfter joining, click **Try Again** 👇",
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [
-                        InlineKeyboardButton("📢 Join Channel", url=CHANNEL_LINK)
-                    ],
-                    [
-                        InlineKeyboardButton("🔄 Try Again", callback_data="check_sub")
-                    ]
+                    [InlineKeyboardButton("📢 Join Channel", url=CHANNEL_LINK)],
+                    [InlineKeyboardButton("🔄 Try Again", callback_data="recheck")]
                 ]
             )
         )
@@ -53,16 +51,15 @@ async def start(client, message):
 
 👋 Hey {message.from_user.first_name}!
 
-I help you generate Telegram
-string sessions quickly and easily.
+Generate Telegram string sessions
+quickly using a modern web interface.
 
-✨ Supported Clients
-• Pyrogram (v1 / v2)
+✨ Supported:
+• API ID $ API HASH 
+• Pyrogram 
 • Telethon
 
 ⚡ Fast • Safe • Secure
-
-Tap the button below to begin 👇
 ━━━━━━━━━━━━━━━━━━
 """,
         reply_markup=InlineKeyboardMarkup(
@@ -77,57 +74,36 @@ Tap the button below to begin 👇
     )
 
 
-# 🔄 RECHECK SUBSCRIPTION
-@app.on_callback_query(filters.regex("check_sub"))
-async def check_sub(client, callback):
-    is_joined = await force_subscribe(client, callback.message)
-
-    if not is_joined:
-        await callback.answer("❌ You must join the channel first!", show_alert=True)
+@app.on_callback_query(filters.regex("recheck"))
+async def recheck(client, callback):
+    if not await is_subscribed(client, callback.from_user.id):
+        await callback.answer("❌ Please join the channel first!", show_alert=True)
         return
 
     await callback.message.delete()
     await start(client, callback.message)
 
 
-# ⚙️ GENERATE SESSION MENU
 @app.on_callback_query(filters.regex("generate"))
-async def generate_menu(client, callback):
+async def generate(client, callback):
     await callback.message.reply(
         """
 ━━━━━━━━━━━━━━━━━━
 🔐 GENERATE STRING SESSION
 ━━━━━━━━━━━━━━━━━━
 
-Before generating a session,
-make sure you have:
-
+You will need:
 • Telegram API ID
 • Telegram API HASH
 
-Choose an option below 👇
+Choose an option 👇
 ━━━━━━━━━━━━━━━━━━
 """,
         reply_markup=InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton(
-                        "🔑 Create API ID & HASH",
-                        url="https://my.telegram.org/auth"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        "🐍 Pyrogram Session",
-                        url="https://telegram.tools/session-string-generator#pyrogram,user"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        "📡 Telethon Session",
-                        url="https://telegram.tools/session-string-generator#telethon,user"
-                    )
-                ]
+                [InlineKeyboardButton("🔑 Create API ID & HASH", url="https://my.telegram.org/auth")],
+                [InlineKeyboardButton("🐍 Pyrogram Session", url="https://telegram.tools/session-string-generator#pyrogram,user")],
+                [InlineKeyboardButton("📡 Telethon Session", url="https://telegram.tools/session-string-generator#telethon,user")]
             ]
         )
     )
