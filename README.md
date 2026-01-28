@@ -71,6 +71,7 @@ VPS / Dedicated server
 Any Python-supported hosting platform
 
 Make sure all required environment variables are set before running the bot.
+---
 
 🌐 Std Ecosystem
 
@@ -84,6 +85,7 @@ TeamStdNetwork — Documentation, policies, and web-based projects
 
 All ecosystem projects follow a consistent structure with a focus on usability,
 clean architecture, and long-term maintenance.
+---
 
 📜 License
 
@@ -92,6 +94,7 @@ This project is licensed under the Apache License 2.0.
 You are free to use, modify, and distribute this project.
 If you redistribute or publish modified versions, please provide proper attribution
 as described in the NOTICE.md file.
+---
 
 👤 Author
 
