@@ -42,7 +42,7 @@ async def start(client, message):
             "🔒 **Join our channel to use this bot**\n\nAfter joining, click **Try Again** 👇",
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("📢 Join Channel", url=CHANNEL_LINK)],
+                    [InlineKeyboardButton("📢 Join Channel", url=FORCE_SUB_CHANNEL)],
                     [InlineKeyboardButton("🔄 Try Again", callback_data="recheck")]
                 ]
             )
