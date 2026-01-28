@@ -1,5 +1,9 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    WebAppInfo
+)
 from pyrogram.errors import UserNotParticipant
 
 from config import (
@@ -19,6 +23,7 @@ app = Client(
 )
 
 
+# ================= FORCE SUB CHECK =================
 async def is_subscribed(client, user_id):
     try:
         await client.get_chat_member(FORCE_SUB_CHANNEL, user_id)
@@ -29,6 +34,7 @@ async def is_subscribed(client, user_id):
         return False
 
 
+# ================= START =================
 @app.on_message(filters.command("start") & filters.private)
 async def start(client, message):
     if not await is_subscribed(client, message.from_user.id):
@@ -46,18 +52,18 @@ async def start(client, message):
     await message.reply(
         f"""
 ━━━━━━━━━━━━━━━━━━
-🤖 STRING SESSION BOT
+🤖 **STRING SESSION BOT**
 ━━━━━━━━━━━━━━━━━━
 
-👋 Hey {message.from_user.first_name}!
+👋 Hey **{message.from_user.first_name}**
 
 Generate Telegram string sessions
-quickly using a modern web interface.
+using a **modern & secure web UI**.
 
-✨ Supported:
-• API ID $ API HASH 
-• Pyrogram 
-• Telethon
+✨ **Supported**
+• API ID & API HASH  
+• Pyrogram  
+• Telethon  
 
 ⚡ Fast • Safe • Secure
 ━━━━━━━━━━━━━━━━━━
@@ -74,7 +80,8 @@ quickly using a modern web interface.
     )
 
 
-@app.on_callback_query(filters.regex("recheck"))
+# ================= RECHECK =================
+@app.on_callback_query(filters.regex("^recheck$"))
 async def recheck(client, callback):
     if not await is_subscribed(client, callback.from_user.id):
         await callback.answer("❌ Please join the channel first!", show_alert=True)
@@ -84,12 +91,13 @@ async def recheck(client, callback):
     await start(client, callback.message)
 
 
-@app.on_callback_query(filters.regex("generate"))
+# ================= GENERATE MENU =================
+@app.on_callback_query(filters.regex("^generate$"))
 async def generate(client, callback):
     await callback.message.reply(
         """
 ━━━━━━━━━━━━━━━━━━
-🔐 GENERATE STRING SESSION
+🔐 **GENERATE STRING SESSION**
 ━━━━━━━━━━━━━━━━━━
 
 You will need:
@@ -101,9 +109,28 @@ Choose an option 👇
 """,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("🔑 Create API ID & HASH", url="https://my.telegram.org/auth")],
-                [InlineKeyboardButton("🐍 Pyrogram Session", url="https://telegram.tools/session-string-generator#pyrogram,user")],
-                [InlineKeyboardButton("📡 Telethon Session", url="https://telegram.tools/session-string-generator#telethon,user")]
+                [
+                    InlineKeyboardButton(
+                        "🔑 Create API ID & HASH",
+                        web_app=WebAppInfo(url="https://my.telegram.org/auth")
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "🐍 Pyrogram Session",
+                        web_app=WebAppInfo(
+                            url="https://telegram.tools/session-string-generator#pyrogram,user"
+                        )
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "📡 Telethon Session",
+                        web_app=WebAppInfo(
+                            url="https://telegram.tools/session-string-generator#telethon,user"
+                        )
+                    )
+                ]
             ]
         )
     )
