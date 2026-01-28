@@ -1,0 +1,32 @@
+{
+  "name": "StringSessionGen",
+  "description": "Advanced Telegram String Session Generator Bot with Modern Web UI & Force Subscribe",
+  "repository": "https://github.com/StdBots/StringSessionGen",
+  "keywords": ["telegram", "pyrogram", "string-session", "bot"],
+  "env": {
+    "API_ID": {
+      "description": "Telegram API ID",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Telegram API HASH",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Telegram Bot Token",
+      "required": true
+    },
+    "FORCE_SUB_CHANNEL": {
+      "description": "Force subscribe channel username (with @)",
+      "required": true
+    },
+    "CHANNEL_LINK": {
+      "description": "Public channel link",
+      "required": true
+    },
+    "SUPPORT_LINK": {
+      "description": "Support chat link",
+      "required": true
+    }
+  }
+}
