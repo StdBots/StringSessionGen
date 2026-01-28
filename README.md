@@ -2,18 +2,18 @@
 
 An advanced Telegram string session generator bot with a modern web-based interface and force subscribe support.
 
-This bot allows users to generate Telegram string sessions easily for popular client libraries using a clean and simple flow directly from Telegram.
+StringSessionGen is built to provide a simple, clean, and practical way to generate Telegram string sessions directly from Telegram without unnecessary complexity.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
 - 🔐 Force subscribe protection
-- 🌐 Modern web-based session generation
+- 🌐 Modern web-based session flow
 - ⚡ Fast and lightweight
-- 🤖 Clean Telegram bot UI
+- 🤖 Clean and minimal Telegram bot UI
 - 🔑 API ID & API HASH helper
-- 🧩 Supports multiple client libraries
+- 🧩 Supports popular Telegram client libraries
 
 ---
 
@@ -24,76 +24,76 @@ This bot allows users to generate Telegram string sessions easily for popular cl
 
 ---
 
-## 🛠 How It Works
+## 🔄 How It Works
 
-1. User starts the bot
-2. Bot checks force subscription
-3. User joins the required channel
-4. User selects **Generate Session**
-5. Web interface opens directly inside Telegram
-6. User generates and copies their session string
+1. User starts the bot  
+2. Bot checks required channel subscription  
+3. User joins the channel if needed  
+4. User clicks **Generate Session**  
+5. Web interface opens inside Telegram  
+6. User generates and copies their session string  
+
+The bot itself does not process or store any session data.
 
 ---
 
-## ⚠️ Security Notice
+## 🔐 Security & Privacy
 
 - This bot **does not store** any session strings
-- All session generation happens on external web pages
-- Never share your session string with anyone
-- Anyone with your session string can access your account
+- No sensitive data is saved on the server
+- Session generation happens via external web interfaces
+- Never share your session string with anyone  
+  (anyone with the string can access your account)
 
 ---
 
-## 🧪 Requirements
+## ⚙️ Environment Variables
 
-- Python 3.10+
-- Pyrogram
-- tgcrypto
+The following environment variables are required to run the bot:
 
----
-
-## ⚙️ Deployment
-
-This bot is ready to deploy on platforms like:
-
-- Heroku   https://heroku.com/deploy?template=https://github.com/StdBots/StringSessionGen
-
-- VPS / Dedicated server
-- Any Python-supported hosting
-
-Make sure to set the required environment variables before running the bot.
-
----
-
-## 📄 Environment Variables
- API_ID=your_api_id
+```env
+API_ID=your_api_id
 API_HASH=your_api_hash
 BOT_TOKEN=your_bot_token
-FORCE_SUB_CHANNEL=@your_channel
+FORCE_SUB_CHANNEL=@your_force_sub_channel
 CHANNEL_LINK=https://t.me/your_channel
-
 SUPPORT_LINK=https://t.me/your_support
+```
 
+🚀 Deployment
 
----
+This bot can be deployed on:
 
-## 📌 Status
+Heroku
 
-This project is actively maintained.  
-More improvements and features will be added over time.
+VPS / Dedicated server
 
----
+Any Python-supported hosting platform
 
-## 📜 License
+Make sure all required environment variables are set before running the bot.
 
-Apache License 2.0  
-You are free to use, modify, and distribute this project with proper attribution.
+🌐 Std Ecosystem
 
----
+This project is part of a unified development ecosystem maintained by the same author:
 
-## ⭐ Credits
+StdDeepanshu — Core development, APIs, and learning repositories
 
-Developed as part of the **StdBots** ecosystem.
+StdBots — Telegram automation and utility bots
 
+TeamStdNetwork — Documentation, policies, and web-based projects
 
+All ecosystem projects follow a consistent structure with a focus on usability,
+clean architecture, and long-term maintenance.
 
+📜 License
+
+This project is licensed under the Apache License 2.0.
+
+You are free to use, modify, and distribute this project.
+If you redistribute or publish modified versions, please provide proper attribution
+as described in the NOTICE.md file.
+
+👤 Author
+
+STD-DEEPANSHU
+Part of the StdBots ecosystem
