@@ -38,11 +38,14 @@ async def is_subscribed(client, user_id):
 @app.on_message(filters.command("start") & filters.private)
 async def start(client, message):
     if not await is_subscribed(client, message.from_user.id):
+        # 🔑 username -> valid https url
+        join_link = f"https://t.me/{FORCE_SUB_CHANNEL.lstrip('@')}"
+
         await message.reply(
             "🔒 **Join our channel to use this bot**\n\nAfter joining, click **Try Again** 👇",
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("📢 Join Channel", url=FORCE_SUB_CHANNEL)],
+                    [InlineKeyboardButton("📢 Join Channel", url=join_link)],
                     [InlineKeyboardButton("🔄 Try Again", callback_data="recheck")]
                 ]
             )
