@@ -77,7 +77,7 @@ Make sure all required environment variables are set before running the bot.
 
 This project is part of a unified development ecosystem maintained by the same author:
 
-StdDeepanshu — Core development, APIs, and learning repositories
+STD-DEEPANSHU — Core development, APIs, and learning repositories
 
 StdBots — Telegram automation and utility bots
 
